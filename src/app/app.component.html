@@ -1,0 +1,78 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Components</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="#">Weekday selector</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Components collection</span>
+    </mat-toolbar>
+
+    <!-- week-day-selector component examples -->
+    <section>
+      <h2>Week Day Selector</h2>
+
+      <br>
+        <week-day-selector></week-day-selector>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <week-day-selector [weekOnTop]="true" [altView]="true"></week-day-selector>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <week-day-selector [weekOnTop]="true" [showMonth]="false"></week-day-selector>
+      <br>
+    </section>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<!-- <mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon mat-focus-indicator mat-icon-button mat-button-base"
+    aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span>{{title}}</span>
+  <span class="example-spacer"></span>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-container" style="height: 100%; padding: 12px;">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+    <mat-list>
+      <mat-list-item> week-day-selector </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content style="padding: 12px;">
+    <h2>Week Day Selector</h2>
+
+    <br />
+    <br />
+    <week-day-selector></week-day-selector>
+
+    <br />
+    <mat-divider></mat-divider>
+    <br />
+
+    <week-day-selector [weekOnTop]="true" [altView]="true"></week-day-selector>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container> -->

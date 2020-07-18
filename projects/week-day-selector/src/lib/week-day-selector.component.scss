@@ -1,0 +1,181 @@
+
+.wd-sel-container, .wd-sel-weekdays {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    position: relative;
+    height: 2em;
+}
+.wd-sel-weekdays {
+    transition: all .5s;
+}
+.wd-sel-weekdays-container {
+    width: 15.4em;
+    overflow: hidden;
+}
+.wd-sel-container {
+    min-width: 18.2em;
+
+    &.wd-sel-arrow {
+        width: 1em;
+        min-width: 1em;
+        height: 2em;
+        line-height: 2em;
+    }
+}
+.wd-sel-weekdays-container {
+
+    .wd-sel-date-container {
+        height: 2em;
+        line-height: 2em;
+        width: 2em;
+        min-width: 2em;
+    }
+}
+.wd-sel-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.wd-sel-date-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: .1em;
+    margin-right: .1em;
+    opacity: .4;
+
+    &.active {
+        opacity: 1;
+    }
+}
+.wd-sel-date-day {
+    font-size: 1em;
+    height: 1em;
+    line-height: 1em;
+}
+.wd-sel-date-weekday,
+.wd-sel-date-month {
+    display: flex;
+    align-items: center;
+    font-size: .4em;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: .8em;
+    padding-left: .8em;
+
+}
+.wd-sel-date-weekday {
+    color: red;
+    padding-top: .2em;
+
+    &.small {
+        font-size: .4em;
+        height: .4em;
+        line-height: .4em;
+        margin-bottom: .1em;
+    }
+
+    &.large {
+        font-size: .8em;
+        height: .8em;
+        line-height: .8em;
+        margin-bottom: .2em;
+    }
+}
+
+.wd-sel-date-month {
+    color: blue;
+    padding-bottom: .2em;
+    transition: .5s;
+}
+
+.wd-sel-frame {
+    position: absolute;
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    border: 1px solid turquoise;
+    border-radius: 4px;
+    left: 50%;
+    margin-left: -1em;
+    z-index: 101;
+}
+
+.wd-sel-disabled {
+    color: lightgray
+}
+.wd-sel-overlay {
+    background-color: #d3d3d3; // lightgray
+    opacity: .3;
+    position: absolute;
+    z-index: 100;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    cursor: not-allowed;
+}
+
+/*****************************************
+if show all (week/day/month)
+display weekday on top outside frame
+*******************************************/
+.wd-sell-show-all {
+    &.wd-sel-container {
+        margin-top: 1em;
+    }
+    .wd-sel-weekdays {
+        margin-top: 1em;
+    }
+    .wd-sel-date-weekday {
+        font-weight: bold;
+        margin-top: -4.4em;
+        margin-bottom: 1em;
+    }
+}
+
+/*****************************************
+if show all (week/day/month)
+alternative view
+*******************************************/
+.wd-sel-container.wd-sell-show-all.wd-sel-alt-view {
+    .wd-sel-frame {
+        border-color: black !important;
+
+        .wd-sel-frame-section-bottom {
+            position: absolute;
+            bottom: 0px;
+            height: 35%;
+            width: 100%;
+            background-color: #d33939;
+        }
+    }
+    .wd-sel-date-weekday {
+        margin-top: -4.1em;
+        margin-bottom: .7em;
+        color: black;
+    }
+    .wd-sel-date-month {
+        color: black;
+        padding-bottom: .2em;
+        padding: .6em 0.3em .3em .4em;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        font-weight: bold;
+        margin-left: 2px;
+        width: calc(100% - 2px);
+        box-sizing: border-box;
+        transition: .3s;
+    }
+    .wd-sel-date-container {
+        z-index: 110;
+    }
+    .active {
+        .wd-sel-date-month {
+            color: white;
+        }
+    }
+}
