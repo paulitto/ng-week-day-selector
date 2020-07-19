@@ -26,18 +26,50 @@
       <h2>Week Day Selector</h2>
 
       <br>
-        <week-day-selector></week-day-selector>
+        <week-day-selector
+        ></week-day-selector>
       <br>
       <mat-divider></mat-divider>
       <br>
-      <week-day-selector [weekOnTop]="true" [altView]="true"></week-day-selector>
+      <week-day-selector [weekOnTop]="true" [frameStyle]="{
+        'border-radius': '50%',
+        'background': 'linear-gradient(to right, #ff4e50, #f9d423)',
+        'border': 'none'
+      }"></week-day-selector>
       <br>
       <mat-divider></mat-divider>
       <br>
-      <week-day-selector [weekOnTop]="true" [showMonth]="false"></week-day-selector>
+      <week-day-selector [frameColor]="'#3f51b5'"
+      [weekOnTop]="true" [showMonth]="false"></week-day-selector>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <week-day-selector 
+        [weekOnTop]="true" 
+        [frameColor]="'#333'"
+        [showFrameSectionBottom]="true"
+        [monthStyle]="{
+          'font-size': '.3em'
+        }"
+        [monthStyleActive]="{
+          'color': '#f2f2f2'
+        }"
+        [monthFormat]="'MMMM'"
+        [frameSectionBottomStyle]="{
+          'background-color': '#ee210a'
+        }"
+        >
+      </week-day-selector>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <week-day-selector
+        [frameColor]="'#3f51b5'"
+        [showArrows]="false"
+        [showMonth]="false"></week-day-selector>
       <br>
     </section>
-
+    <!-- #ee210a -->
 
   </mat-sidenav-content>
 </mat-sidenav-container>

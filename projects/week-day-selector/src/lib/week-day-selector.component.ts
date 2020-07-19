@@ -16,33 +16,48 @@ interface IDay {
 })
 export class WeekDaySelectorComponent implements OnInit {
 
-  @Input()
-  disabled = false;
+  @Input() disabled = false;
 
-  @Input()
-  activeColor;
+  // active frame styling
+  @Input() frameColor;
+  @Input() frameStyle;
+  @Input() frameSectionColor;
+  @Input() frameSectionStyle;
 
-  @Input()
-  selectedDate: moment.Moment;
+  // sections inside active frame
+  @Input() showFrameSectionTop = false;
+  @Input() frameSectionTopStyle;
+  @Input() showFrameSectionBottom = false;
+  @Input() frameSectionBottomStyle;
+  @Input() showFrameSectionMiddle = false;
+  @Input() frameSectionMiddleStyle;
 
-  @Input()
-  showMonth = true;
+  // month name
+  @Input() showMonth = true;
+  @Input() monthColor: string;
+  @Input() monthStyle;
+  @Input() monthStyleActive;
+  @Input() monthFormat = 'MMM'; // moment js format
 
-  @Input()
-  showWeekday = true;
+  // week name
+  @Input() showWeekday = true;
+  @Input() weekColor: string;
+  @Input() weekStyle;
+  @Input() weekFormat = 'ddd'; // moment js format
 
-  @Input()
-  showDay = true;
+  // day
+  @Input() showDay = true;
+  @Input() dayColor: string;
+  @Input() dayStyle;
+  @Input() dayFormat = 'D'; // moment js format
+
+  // show arrows
+  @Input() showArrows = true;
 
   // shows weekdays on top of the date container
-  // (only works when all showMonth/showWeekday/showDay are true)
-  @Input()
-  weekOnTop = false;
+  @Input() weekOnTop = false;
 
-  // show alternative look with red background for month
-  // (only works when all showMonth/showWeekday/showDay are true and weekOnTop true)
-  @Input()
-  altView = false;
+  @Input() selectedDate: moment.Moment;
 
   @Output()
   selectedDateChange = new EventEmitter<moment.Moment>();
@@ -56,6 +71,7 @@ export class WeekDaySelectorComponent implements OnInit {
 
   scrollPosition: string;
 
+  frameSize = 2;
   constructor() {
   }
 
@@ -83,6 +99,8 @@ export class WeekDaySelectorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.applyStyles();
+
     // set selected as today if it isnt provided
     if (!this.selectedDate) {
       this.selectedDate = moment();
@@ -92,6 +110,52 @@ export class WeekDaySelectorComponent implements OnInit {
     this.addWeekBefore();
     this.addDate(this.selectedDate, true);
     this.addWeekAhead();
+  }
+
+  private applyStyles() {
+    // frame styles
+    this.frameStyle = {
+      'border-color': this.frameColor,
+      ...this.frameStyle
+    };
+    this.frameSectionStyle = {
+      'background-color': this.frameSectionColor,
+      ...this.frameSectionStyle
+    };
+    this.frameSectionTopStyle = {
+      'background-color': this.frameSectionColor,
+      ...this.frameSectionStyle,
+      ...this.frameSectionTopStyle
+    };
+    this.frameSectionBottomStyle = {
+      'background-color': this.frameSectionColor,
+      ...this.frameSectionStyle,
+      ...this.frameSectionBottomStyle
+    };
+
+    // month styles
+    this.monthStyleActive = {
+      ...this.monthStyle,
+      ...this.monthStyleActive
+    };
+    if (this.monthColor) {
+      this.monthStyle = {
+        'color': this.monthColor,
+        ...this.monthStyle
+      };
+      this.monthStyleActive = {
+        'color': this.monthColor,
+        ...this.monthStyleActive
+      };
+    }
+
+    // week styles
+    if (this.weekColor) {
+      this.weekStyle = {
+        'color': this.weekColor,
+        ...this.weekStyle
+      };
+    }
   }
 
   private addWeekBefore() {
@@ -137,16 +201,16 @@ export class WeekDaySelectorComponent implements OnInit {
   private composeDate(date: moment.Moment, isActive = false) {
     return {
       moment: date.clone(),
-      day: parseInt(date.format('D'), 10),
-      weekday: date.format('ddd') as WeekDayShort,
-      month: date.format('MMM') as MonthShort,
+      day: parseInt(date.format(this.dayFormat), 10),
+      weekday: date.format(this.weekFormat) as WeekDayShort,
+      month: date.format(this.monthFormat) as MonthShort,
       isActive
     };
   }
 
   // update scroll position of weekdays based on activeDateIndex
   private updateScrollPosition() {
-    this.scrollPosition = - (2.2 * (this.activeDateIndex - 3)) + 'em';
+    this.scrollPosition = - (this.frameSize * (this.activeDateIndex - 3)) + 'em';
   }
 
 }

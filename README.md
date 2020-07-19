@@ -20,9 +20,18 @@ e.g.
 
 `ng test week-day-selector`
 
-## Build
+## Build Components
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+`ng build <component name>`
+
+e.g.
+
+`ng build week-day-selector`
+
+`ng build <component name>`
+
+The built packages will be stored in the `dist/` directory.
 
 
 

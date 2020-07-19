@@ -1,3 +1,17 @@
+$cell_size: 2;
+$cell_size_em: $cell_size + em;
+$arrow_width: 1.5;
+
+$frame_size: 2.2;
+$frame_size_em: $frame_size + em;
+
+$weekdays_container_width: $cell_size * 7;
+
+$colors: (
+    text: #333,
+    frame: salmon,
+    frame-section: salmon
+);
 
 .wd-sel-container, .wd-sel-weekdays {
     display: flex;
@@ -5,32 +19,40 @@
     align-items: center;
     font-size: 1rem;
     position: relative;
-    height: 2em;
+    height: $cell_size_em;
+
+    &.wd-sel-no-arrows {
+        justify-content: space-around;
+    }
 }
 .wd-sel-weekdays {
     transition: all .5s;
 }
 .wd-sel-weekdays-container {
-    width: 15.4em;
+    width: $weekdays_container_width + em;
     overflow: hidden;
 }
+.wd-sel-no-arrows {
+    .wd-sel-weekdays-container {
+        width: 100%;
+    }
+}
 .wd-sel-container {
-    min-width: 18.2em;
+    min-width: $weekdays_container_width + ($arrow_width * 2) + 0em;
 
-    &.wd-sel-arrow {
-        width: 1em;
-        min-width: 1em;
-        height: 2em;
-        line-height: 2em;
+    .wd-sel-arrow {
+        width: $arrow_width + em;
     }
 }
 .wd-sel-weekdays-container {
 
     .wd-sel-date-container {
-        height: 2em;
-        line-height: 2em;
-        width: 2em;
-        min-width: 2em;
+        height: $cell_size_em;
+        line-height: $cell_size_em;
+        width: $cell_size_em;
+        min-width: $cell_size_em;
+        // margin-left: 2px;
+        // margin-right: -2px;
     }
 }
 .wd-sel-btn {
@@ -43,9 +65,12 @@
 .wd-sel-date-container {
     display: flex;
     flex-direction: column;
-    margin-left: .1em;
-    margin-right: .1em;
+    // margin-left: .1em;
+    // margin-right: .1em;
     opacity: .4;
+    z-index: 110;
+    text-align: center;
+    justify-content: space-around;
 
     &.active {
         opacity: 1;
@@ -55,20 +80,23 @@
     font-size: 1em;
     height: 1em;
     line-height: 1em;
+    width: 100%;
 }
 .wd-sel-date-weekday,
 .wd-sel-date-month {
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
+    text-align: center;
     font-size: .4em;
-    line-height: 1em;
+    line-height: ($cell_size/2) + em;
     text-transform: uppercase;
-    letter-spacing: .8em;
-    padding-left: .8em;
-
+    font-weight: bold;
+    width: 100%;
+    // letter-spacing: .8em;
+    // padding-left: .8em;
 }
 .wd-sel-date-weekday {
-    color: red;
+    color: map-get($colors, 'text');
     padding-top: .2em;
 
     &.small {
@@ -87,21 +115,48 @@
 }
 
 .wd-sel-date-month {
-    color: blue;
-    padding-bottom: .2em;
+    color: map-get($colors, 'text');
+    // padding-bottom: .2em;
     transition: .5s;
 }
 
 .wd-sel-frame {
     position: absolute;
-    height: 2em;
-    width: 2em;
+    height: $frame_size_em;
+    width: $frame_size_em;
     background-color: transparent;
-    border: 1px solid turquoise;
+    border: 1px solid map-get($colors, 'frame');
     border-radius: 4px;
     left: 50%;
-    margin-left: -1em;
+    margin-left: -($frame_size/2) + em;
     z-index: 101;
+    overflow: hidden;
+    // use border box so that dates relative to it will be positioned correctly
+    // no matter frame has border or not
+    box-sizing: border-box;
+
+    .wd-sel-frame-section-top {
+        position: absolute;
+        top: 0px;
+        height: $frame_size/4 + em;
+        width: 100%;
+        background-color: map-get($colors, 'frame-section');
+    }
+
+    .wd-sel-frame-section-bottom {
+        position: absolute;
+        bottom: 0px;
+        height: $frame_size/4 + em;
+        width: 100%;
+        background-color: map-get($colors, 'frame-section');
+    }
+
+    .wd-sel-frame-section-middle {
+        position: absolute;
+        top: .5em;
+        height: $cell_size/2 + em;
+        width: 100%;
+    }
 }
 
 .wd-sel-disabled {
@@ -123,59 +178,72 @@
 if show all (week/day/month)
 display weekday on top outside frame
 *******************************************/
-.wd-sell-show-all {
+.wd-sel-week-on-top {
     &.wd-sel-container {
-        margin-top: 1em;
+        margin-top: ($cell_size/2) + em;
     }
     .wd-sel-weekdays {
-        margin-top: 1em;
+        margin-top: ($cell_size/2) + em;
     }
     .wd-sel-date-weekday {
         font-weight: bold;
-        margin-top: -4.4em;
-        margin-bottom: 1em;
+        margin-top: -($cell_size * 1.5) + em;
     }
-}
-
-/*****************************************
-if show all (week/day/month)
-alternative view
-*******************************************/
-.wd-sel-container.wd-sell-show-all.wd-sel-alt-view {
-    .wd-sel-frame {
-        border-color: black !important;
-
-        .wd-sel-frame-section-bottom {
-            position: absolute;
-            bottom: 0px;
-            height: 35%;
-            width: 100%;
-            background-color: #d33939;
+    // if all three days shown
+    &.wd-sel-show-all {
+        .wd-sel-date-weekday {
+            margin-top: -($cell_size) + em;
+        }
+        // make sections occupy whole frame
+        .wd-sel-frame {
+            .wd-sel-frame-section-top, .wd-sel-frame-section-bottom {
+                height: ($cell_size/2.5) + em;
+            }
+            .wd-sel-frame-section-middle {
+                height: 0em;
+            }
         }
     }
-    .wd-sel-date-weekday {
-        margin-top: -4.1em;
-        margin-bottom: .7em;
-        color: black;
-    }
-    .wd-sel-date-month {
-        color: black;
-        padding-bottom: .2em;
-        padding: .6em 0.3em .3em .4em;
-        border-bottom-left-radius: 3px;
-        border-bottom-right-radius: 3px;
-        font-weight: bold;
-        margin-left: 2px;
-        width: calc(100% - 2px);
-        box-sizing: border-box;
-        transition: .3s;
-    }
-    .wd-sel-date-container {
-        z-index: 110;
-    }
-    .active {
+    &:not(.wd-sel-show-all) {
         .wd-sel-date-month {
-            color: white;
+            font-size: ($cell_size/4) + em;
+            height: ($cell_size/2) + em;
         }
     }
+    .wd-sel-frame {
+        margin-top: ($cell_size/4) + em;
+        line-height: $cell_size_em
+    }
 }
+
+// /*****************************************
+// if show all (week/day/month)
+// alternative view
+// *******************************************/
+// .wd-sel-container.wd-sell-show-all.wd-sel-alt-view {
+//     .wd-sel-frame {
+//         border-color: black !important;
+//     }
+//     .wd-sel-date-weekday {
+//         margin-top: -4.1em;
+//         margin-bottom: .7em;
+//         color: black;
+//     }
+//     .wd-sel-date-month {
+//         color: black;
+//         padding-bottom: .2em;
+//         padding: .6em 0.3em .3em .4em;
+//         border-bottom-left-radius: 3px;
+//         border-bottom-right-radius: 3px;
+//         font-weight: bold;
+//         margin-left: 2px;
+//         width: calc(100% - 2px);
+//         box-sizing: border-box;
+//         transition: .3s;
+//     }
+//     .active {
+//         .wd-sel-date-month {
+//             color: white;
+//         }
+//     }
+// }
