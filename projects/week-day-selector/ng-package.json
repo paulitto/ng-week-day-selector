@@ -3,5 +3,8 @@
   "dest": "../../dist/week-day-selector",
   "lib": {
     "entryFile": "src/public_api.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "moment"
+  ]
 }

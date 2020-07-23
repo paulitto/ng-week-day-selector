@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import * as moment from 'moment';
+import * as moment_ from 'moment';
+const moment = moment_;
 import { IWeekDay, WEEKDAY_NAMES, WeekDayShort, MonthShort } from './week-day-selector.helper';
 
 interface IDay {
