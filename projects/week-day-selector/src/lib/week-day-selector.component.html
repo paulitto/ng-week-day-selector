@@ -21,6 +21,7 @@
   
   <div class="wd-sel-weekdays-container">
     <div class="wd-sel-weekdays"
+    [ngClass]="{'wd-sel-animated': animateWeek}"
     [ngStyle]="{'left': scrollPosition}"
     >
       <span *ngFor="let day of arrDays; let i = index"

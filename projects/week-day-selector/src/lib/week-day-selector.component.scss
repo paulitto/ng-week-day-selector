@@ -25,7 +25,7 @@ $colors: (
         justify-content: space-around;
     }
 }
-.wd-sel-weekdays {
+.wd-sel-weekdays.wd-sel-animated {
     transition: all .5s;
 }
 .wd-sel-weekdays-container {
@@ -214,35 +214,3 @@ display weekday on top outside frame
         line-height: $cell_size_em
     }
 }
-
-// /*****************************************
-// if show all (week/day/month)
-// alternative view
-// *******************************************/
-// .wd-sel-container.wd-sell-show-all.wd-sel-alt-view {
-//     .wd-sel-frame {
-//         border-color: black !important;
-//     }
-//     .wd-sel-date-weekday {
-//         margin-top: -4.1em;
-//         margin-bottom: .7em;
-//         color: black;
-//     }
-//     .wd-sel-date-month {
-//         color: black;
-//         padding-bottom: .2em;
-//         padding: .6em 0.3em .3em .4em;
-//         border-bottom-left-radius: 3px;
-//         border-bottom-right-radius: 3px;
-//         font-weight: bold;
-//         margin-left: 2px;
-//         width: calc(100% - 2px);
-//         box-sizing: border-box;
-//         transition: .3s;
-//     }
-//     .active {
-//         .wd-sel-date-month {
-//             color: white;
-//         }
-//     }
-// }

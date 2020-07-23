@@ -74,30 +74,35 @@ export class WeekDaySelectorComponent implements OnInit {
   cellSize = 2;
   cellMargin = '';
 
+  animateWeek = true;
   constructor() {
   }
 
   activateDay(index: number = 0, day?: IDay) {
 
-    if (!day && this.arrDays.length > index) {
-      day = this.arrDays[index];
-    }
-
-    this.selectedDateChange.emit(day.moment.clone());
-
-    this.activeDate.isActive = false;
-    day.isActive = true;
-    this.activeDate = day;
-    this.activeDateIndex = index;
-    this.updateScrollPosition();
-
     if (index > this.arrDays.length - 4) {
+      this.animateWeek = false;
       this.addWeekAhead();
     }
 
     if (index < 4) {
+      this.animateWeek = false;
       this.addWeekBefore();
+      index = index + 7;
     }
+    // wait until scroll updated in ui if more days added to array by addWeekBefore or addWeekAhead
+    requestAnimationFrame(() => {
+      this.animateWeek = true;
+      if (!day && this.arrDays.length > index) {
+        day = this.arrDays[index];
+      }
+      this.selectedDateChange.emit(day.moment.clone());
+      this.activeDate.isActive = false;
+      day.isActive = true;
+      this.activeDate = day;
+      this.activeDateIndex = index;
+      this.updateScrollPosition();
+    });
   }
 
   ngOnInit() {
