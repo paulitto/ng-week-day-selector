@@ -71,7 +71,9 @@ export class WeekDaySelectorComponent implements OnInit {
 
   scrollPosition: string;
 
-  frameSize = 2;
+  cellSize = 2;
+  cellMargin = '';
+
   constructor() {
   }
 
@@ -156,6 +158,8 @@ export class WeekDaySelectorComponent implements OnInit {
         ...this.weekStyle
       };
     }
+
+    this.cellMargin = `calc((100%/7 - ${this.cellSize}em)/2)`;
   }
 
   private addWeekBefore() {
@@ -210,7 +214,8 @@ export class WeekDaySelectorComponent implements OnInit {
 
   // update scroll position of weekdays based on activeDateIndex
   private updateScrollPosition() {
-    this.scrollPosition = - (this.frameSize * (this.activeDateIndex - 3)) + 'em';
+    // -3 because we are going to have 3 cells before and after active date (which makes 7 days in total)
+    const framesOffset = this.activeDateIndex - 3;
+    this.scrollPosition = `calc(-${(this.cellSize * framesOffset)}em - ${framesOffset}*(100%/7 - ${this.cellSize}em))`;
   }
-
 }

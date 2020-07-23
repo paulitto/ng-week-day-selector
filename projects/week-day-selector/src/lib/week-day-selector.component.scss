@@ -1,6 +1,6 @@
 $cell_size: 2;
 $cell_size_em: $cell_size + em;
-$arrow_width: 1.5;
+$arrow_width: 2;
 
 $frame_size: 2.2;
 $frame_size_em: $frame_size + em;
@@ -29,7 +29,6 @@ $colors: (
     transition: all .5s;
 }
 .wd-sel-weekdays-container {
-    width: $weekdays_container_width + em;
     overflow: hidden;
 }
 .wd-sel-no-arrows {

@@ -26,7 +26,10 @@
       <span *ngFor="let day of arrDays; let i = index"
         (click)="activateDay(i, day)"
         [ngClass]="{'active': day.isActive}"
-
+        [ngStyle]="{
+          'margin-left': cellMargin,
+          'margin-right': cellMargin
+        }"
         class="wd-sel-btn wd-sel-date-container">
 
         <span
