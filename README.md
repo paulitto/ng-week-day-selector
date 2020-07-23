@@ -1,13 +1,23 @@
 # ng-toolkit
 collection of few angular ui components
 
+see examples [here](https://paulitto.github.io/ng-toolkit/)
+
 # components included
  week-day-selector
 
+ ... more to come soon(ish)
+
 # usage
 
+## week-day-selector
 
-# run examples
+- import WeekDaySelectorModule into your angular module
+- use `<week-day-selector></week-day-selector>` in your templates
+
+see some examples [here](https://paulitto.github.io/ng-toolkit/)
+
+# run examples locally
 to start the examples page
 
 `npm start`
