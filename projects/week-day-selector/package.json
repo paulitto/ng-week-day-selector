@@ -1,6 +1,25 @@
 {
   "name": "week-day-selector",
-  "version": "0.0.1",
+  "version": "1.0.2",
+  "description": "customizable mobile-friendly angular component to select dates from a nearby week",
+  "author": "Pavlo Tatarenko",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulitto/ng-toolkit.git"
+  },
+  "homepage": "https://paulitto.github.io/ng-toolkit/#week-day-selector",
+  "bugs": {
+    "url": "https://github.com/paulitto/ng-toolkit/issues"
+  },
+  "keywords": [
+    "angular",
+    "week day selector",
+    "weekday selector",
+    "week picker",
+    "weekday picker",
+    "mobile",
+    "responsive"
+  ],
   "peerDependencies": {
     "@angular/common": "^7.1.0",
     "@angular/core": "^7.1.0"
