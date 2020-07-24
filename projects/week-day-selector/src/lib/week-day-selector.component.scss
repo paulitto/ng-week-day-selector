@@ -190,9 +190,9 @@ display weekday on top outside frame
     }
     // if all three days shown
     &.wd-sel-show-all {
-        .wd-sel-date-weekday {
-            margin-top: -($cell_size) + em;
-        }
+        // .wd-sel-date-weekday {
+        //     margin-top: -($cell_size * 1.5) + em;
+        // }
         // make sections occupy whole frame
         .wd-sel-frame {
             .wd-sel-frame-section-top, .wd-sel-frame-section-bottom {
@@ -202,6 +202,12 @@ display weekday on top outside frame
                 height: 0em;
             }
         }
+        .wd-sel-frame {
+            margin-top: ($cell_size/8) + em;
+        }
+        .wd-sel-date-month {
+            margin-bottom: ($cell_size/2) + em;
+        }
     }
     &:not(.wd-sel-show-all) {
         .wd-sel-date-month {
@@ -210,7 +216,7 @@ display weekday on top outside frame
         }
     }
     .wd-sel-frame {
-        margin-top: ($cell_size/4) + em;
+        margin-top: ($cell_size/2) + em;
         line-height: $cell_size_em
     }
 }
