@@ -1,0 +1,222 @@
+$cell_size: 2;
+$cell_size_em: $cell_size + em;
+$arrow_width: 2;
+
+$frame_size: 2.2;
+$frame_size_em: $frame_size + em;
+
+$weekdays_container_width: $cell_size * 7;
+
+$colors: (
+    text: #333,
+    frame: salmon,
+    frame-section: salmon
+);
+
+.w-sel-container, .w-sel-weekdays {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    position: relative;
+    height: $cell_size_em;
+
+    &.w-sel-no-arrows {
+        justify-content: space-around;
+    }
+}
+.w-sel-weekdays.w-sel-animated {
+    transition: all .5s;
+}
+.w-sel-weekdays-container {
+    overflow: hidden;
+}
+.w-sel-no-arrows {
+    .w-sel-weekdays-container {
+        width: 100%;
+    }
+}
+.w-sel-container {
+    min-width: $weekdays_container_width + ($arrow_width * 2) + 0em;
+
+    .w-sel-arrow {
+        width: $arrow_width + em;
+    }
+}
+.w-sel-weekdays-container {
+
+    .w-sel-date-container {
+        height: $cell_size_em;
+        line-height: $cell_size_em;
+        width: $cell_size_em;
+        min-width: $cell_size_em;
+        // margin-left: 2px;
+        // margin-right: -2px;
+    }
+}
+.w-sel-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.w-sel-date-container {
+    display: flex;
+    flex-direction: column;
+    // margin-left: .1em;
+    // margin-right: .1em;
+    opacity: .4;
+    z-index: 110;
+    text-align: center;
+    justify-content: space-around;
+
+    &.active {
+        opacity: 1;
+    }
+}
+.w-sel-date-day {
+    font-size: 1em;
+    height: 1em;
+    line-height: 1em;
+    width: 100%;
+}
+.w-sel-date-weekday,
+.w-sel-date-month {
+    // display: flex;
+    // align-items: center;
+    text-align: center;
+    font-size: .4em;
+    line-height: ($cell_size/2) + em;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 100%;
+    // letter-spacing: .8em;
+    // padding-left: .8em;
+}
+.w-sel-date-weekday {
+    color: map-get($colors, 'text');
+    padding-top: .2em;
+
+    &.small {
+        font-size: .4em;
+        height: .4em;
+        line-height: .4em;
+        margin-bottom: .1em;
+    }
+
+    &.large {
+        font-size: .8em;
+        height: .8em;
+        line-height: .8em;
+        margin-bottom: .2em;
+    }
+}
+
+.w-sel-date-month {
+    color: map-get($colors, 'text');
+    // padding-bottom: .2em;
+    transition: .5s;
+}
+
+.w-sel-frame {
+    position: absolute;
+    height: $frame_size_em;
+    width: $frame_size_em;
+    background-color: transparent;
+    border: 1px solid map-get($colors, 'frame');
+    border-radius: 4px;
+    left: 50%;
+    margin-left: -($frame_size/2) + em;
+    z-index: 101;
+    overflow: hidden;
+    // use border box so that dates relative to it will be positioned correctly
+    // no matter frame has border or not
+    box-sizing: border-box;
+
+    .w-sel-frame-section-top {
+        position: absolute;
+        top: 0px;
+        height: $frame_size/4 + em;
+        width: 100%;
+        background-color: map-get($colors, 'frame-section');
+    }
+
+    .w-sel-frame-section-bottom {
+        position: absolute;
+        bottom: 0px;
+        height: $frame_size/4 + em;
+        width: 100%;
+        background-color: map-get($colors, 'frame-section');
+    }
+
+    .w-sel-frame-section-middle {
+        position: absolute;
+        top: .5em;
+        height: $cell_size/2 + em;
+        width: 100%;
+    }
+}
+
+.w-sel-disabled {
+    color: lightgray
+}
+.w-sel-overlay {
+    background-color: #d3d3d3; // lightgray
+    opacity: .3;
+    position: absolute;
+    z-index: 100;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    cursor: not-allowed;
+}
+
+/*****************************************
+if show all (week/day/month)
+display weekday on top outside frame
+*******************************************/
+.w-sel-week-on-top {
+    &.w-sel-container {
+        margin-top: ($cell_size/2) + em;
+    }
+    .w-sel-weekdays {
+        margin-top: ($cell_size/2) + em;
+    }
+    .w-sel-date-weekday {
+        font-weight: bold;
+        margin-top: -($cell_size * 1.5) + em;
+    }
+    // if all three days shown
+    &.w-sel-show-all {
+        // .w-sel-date-weekday {
+        //     margin-top: -($cell_size * 1.5) + em;
+        // }
+        // make sections occupy whole frame
+        .w-sel-frame {
+            .w-sel-frame-section-top, .w-sel-frame-section-bottom {
+                height: ($cell_size/2.5) + em;
+            }
+            .w-sel-frame-section-middle {
+                height: 0em;
+            }
+        }
+        .w-sel-frame {
+            margin-top: ($cell_size/8) + em;
+        }
+        .w-sel-date-month {
+            margin-bottom: ($cell_size/2) + em;
+        }
+    }
+    &:not(.w-sel-show-all) {
+        .w-sel-date-month {
+            font-size: ($cell_size/4) + em;
+            height: ($cell_size/2) + em;
+        }
+    }
+    .w-sel-frame {
+        margin-top: ($cell_size/2) + em;
+        line-height: $cell_size_em
+    }
+}

@@ -11,14 +11,22 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material';
+import { ExamplesComponent } from './examples/examples.component';
+import { WeekDaySelectorExampleComponent } from './examples/week-day-selector-example/week-day-selector-example.component';
+import { WeekSelectorModule } from 'projects/week-selector/src/public_api';
+import { WeekSelectorExampleComponent } from './examples/week-selector-example/week-selector-example.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ExamplesComponent,
+    WeekDaySelectorExampleComponent,
+    WeekSelectorExampleComponent
   ],
   imports: [
     BrowserModule,
     WeekDaySelectorModule,
+    WeekSelectorModule,
     MatIconModule,
     MatToolbarModule,
     MatSidenavModule,

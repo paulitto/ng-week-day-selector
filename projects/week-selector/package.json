@@ -1,0 +1,31 @@
+{
+  "name": "week-selector",
+  "version": "1.0.0",
+  "description": "customizable mobile-friendly angular component to select week date ranges",
+  "author": "Pavlo Tatarenko",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulitto/ng-toolkit.git"
+  },
+  "homepage": "https://paulitto.github.io/ng-toolkit/#week-selector",
+  "bugs": {
+    "url": "https://github.com/paulitto/ng-toolkit/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "week selector",
+    "week picker",
+    "date range picker",
+    "date range selector",
+    "mobile",
+    "responsive"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0"
+  },
+  "dependencies": {
+    "moment": "^2.27.0"
+  }
+}

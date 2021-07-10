@@ -1,0 +1,42 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Components</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="#"
+        (click)="selectedExample = 'week-day-selector'">
+        Weekday selector
+      </a>
+      <a mat-list-item href="#" 
+        (click)="selectedExample = 'week-selector'">
+        Week selector
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Angular Components</span>
+    </mat-toolbar>
+
+    <!-- week-day-selector component examples -->
+    <section *ngIf="selectedExample == 'week-day-selector'">
+      <app-week-day-selector-example></app-week-day-selector-example>
+    </section>
+
+    <section *ngIf="selectedExample == 'week-selector'">
+      <app-week-selector-example></app-week-selector-example>
+    </section>
+
+    <!-- #ee210a -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

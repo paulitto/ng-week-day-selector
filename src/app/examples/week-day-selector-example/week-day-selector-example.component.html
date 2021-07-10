@@ -1,0 +1,63 @@
+<h2>Week Day Selector Examples</h2>
+
+      <mat-divider></mat-divider>      
+      <br>
+      <p><b>Example 1:</b></p>
+      <pre><code>{{code1}}</code></pre>
+      <br>
+        <week-day-selector></week-day-selector>
+      <br>
+
+      <mat-divider></mat-divider>
+      <br>
+      <p><b>Example 2:</b></p>
+      <pre><code>{{code2}}</code></pre>
+      <br>
+      selected date: {{selDate.format('dddd, MMMM Do YYYY')}}
+      <week-day-selector
+        [(selectedDate)]="selDate"
+        [weekOnTop]="true"
+        [frameStyle]="{
+          'border-radius': '50%',
+          'background': 'linear-gradient(to right, #ff4e50, #f9d423)',
+          'border': 'none'
+        }">
+      </week-day-selector>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <p><b>Example 3:</b></p>
+      <pre><code>{{code3}}</code></pre>
+      <br>
+      <week-day-selector 
+        [frameColor]="'#3f51b5'"
+        [weekOnTop]="true"
+        [showMonth]="false">
+      </week-day-selector>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <p><b>Example 4:</b></p>
+      <pre><code>{{code4}}</code></pre>
+      <br>
+      <week-day-selector 
+        [weekOnTop]="true" 
+        [frameColor]="'#333'"
+        [showFrameSectionBottom]="true"
+        [monthStyle]="{'font-size': '.3em'}"
+        [monthStyleActive]="{'color': '#f2f2f2'}"
+        [monthFormat]="'MMMM'"
+        [frameSectionBottomStyle]="{'background-color': '#ee210a'}">
+      </week-day-selector>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <p><b>Example 5:</b></p>
+      <pre><code>{{code5}}</code></pre>
+      <br>
+      <week-day-selector
+        [frameColor]="'#3f51b5'"
+        [showArrows]="false"
+        [showMonth]="false">
+      </week-day-selector>
+      <br>
